@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 
 exports.faunaFetch = async ({ query, variables }) => {
-  console.log(process.env.FAUNA_SERVER_KEY);
+  console.log(`Bearer ${process.env.FAUNA_SERVER_KEY}`);
   return await fetch('https://graphql.fauna.com/graphql', {
     method: 'POST',
     headers: {
