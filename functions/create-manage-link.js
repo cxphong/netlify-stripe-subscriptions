@@ -17,6 +17,8 @@ exports.handler = async (_event, context) => {
     },
   });
 
+  console.log(result);
+
   const { stripeID } = result.data.getUserByNetlifyID;
 
   const link = await stripe.billingPortal.sessions.create({
