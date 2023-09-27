@@ -23,7 +23,7 @@ exports.handler = async (_event, context) => {
 
   const customer = await stripe.customers.create({ email: user.email });
   const link = await stripe.billingPortal.sessions.create({
-    customer: stripeID,
+    customer: customer.id,
     return_url: process.env.URL,
   });
 
