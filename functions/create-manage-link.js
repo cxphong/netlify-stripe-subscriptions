@@ -17,7 +17,7 @@ exports.handler = async (_event, context) => {
   //   },
   // });
 
-  console.log(result);
+  //console.log(result);
 
   // const { stripeID } = result.data.getUserByNetlifyID;
 
