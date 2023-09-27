@@ -4,22 +4,22 @@ const { faunaFetch } = require('./utils/fauna');
 exports.handler = async (_event, context) => {
   const { user } = context.clientContext;
 
-  const result = await faunaFetch({
-    query: `
-      query ($netlifyID: ID!) {
-        getUserByNetlifyID(netlifyID: $netlifyID) {
-          stripeID
-        }
-      }
-    `,
-    variables: {
-      netlifyID: user.sub,
-    },
-  });
+  // const result = await faunaFetch({
+  //   query: `
+  //     query ($netlifyID: ID!) {
+  //       getUserByNetlifyID(netlifyID: $netlifyID) {
+  //         stripeID
+  //       }
+  //     }
+  //   `,
+  //   variables: {
+  //     netlifyID: user.sub,
+  //   },
+  // });
 
   console.log(result);
 
-  const { stripeID } = result.data.getUserByNetlifyID;
+  // const { stripeID } = result.data.getUserByNetlifyID;
 
   const customer = await stripe.customers.create({ email: user.email });
   const link = await stripe.billingPortal.sessions.create({
