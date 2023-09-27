@@ -21,6 +21,7 @@ exports.handler = async (_event, context) => {
 
   const { stripeID } = result.data.getUserByNetlifyID;
 
+  const customer = await stripe.customers.create({ email: user.email });
   const link = await stripe.billingPortal.sessions.create({
     customer: stripeID,
     return_url: process.env.URL,
