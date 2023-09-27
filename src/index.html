@@ -199,12 +199,12 @@
   //   });
   // };
 
-  const handleUserStateChange = (user) => {
-    updateUserInfo(user);
-    loadSubscriptionContent(user);
-  };
+  // const handleUserStateChange = (user) => {
+  //   updateUserInfo(user);
+  //   loadSubscriptionContent(user);
+  // };
 
-  netlifyIdentity.on('init', handleUserStateChange);
-  netlifyIdentity.on('login', handleUserStateChange);
-  netlifyIdentity.on('logout', handleUserStateChange);
+  // netlifyIdentity.on('init', handleUserStateChange);
+  // netlifyIdentity.on('login', handleUserStateChange);
+  // netlifyIdentity.on('logout', handleUserStateChange);
 </script>
