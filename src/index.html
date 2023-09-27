@@ -102,9 +102,9 @@
         // TODO handle subscription management
         fetch('/.netlify/functions/create-manage-link', {
           method: 'POST',
-          headers: {
-            Authorization: `Bearer ${user.token.access_token}`,
-          },
+          // headers: {
+          //   Authorization: `Bearer ${user.token.access_token}`,
+          // },
         })
           .then((res) => res.json())
           .then((link) => {
