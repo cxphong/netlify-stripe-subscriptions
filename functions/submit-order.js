@@ -14,7 +14,6 @@ exports.handler = async (_event, context) => {
   isSubmitting = true;
   const API_KEY = process.env.API_KEY
   const API_BASE_URL = process.env.API_URL
-  const ENV = process.env.NODE_ENV
 
   try {
     const instance = axios.create({
@@ -24,7 +23,7 @@ exports.handler = async (_event, context) => {
         }
     });
     
-    const response = await instance.post(API_BASE_URL + "/" + ENV + "/submit", {
+    const response = await instance.post(API_BASE_URL + "/" + "production" + "/submit", {
       order: data.params,
       stripe_id: data.stripeId
     });
