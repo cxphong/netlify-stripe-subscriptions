@@ -118,6 +118,7 @@
   const queryParameters = new URLSearchParams(window.location.search)
   const entries = queryParameters.entries(); 
   const params = paramsToObject(entries);
+  let stripeId = "";
   
    submitButton.addEventListener('click', () => {
         // TODO handle subscription management
@@ -143,7 +144,9 @@
     fetch('/.netlify/functions/create-manage-link', {
       method: 'POST',
     })
-      .then((res) => res.json())
+      .then((res) => {
+        stripeId = res;
+      })
       .then((link) => {
         window.location.href = link;
       })
