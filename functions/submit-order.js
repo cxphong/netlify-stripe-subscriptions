@@ -15,6 +15,13 @@ exports.handler = async (_event, context) => {
   const ENV = process.env.NODE_ENV
 
   try {
+    const instance = axios.create({
+      baseURL: API_BASE_URL,
+      headers: {
+        Authorization: API_KEY
+        }
+    });
+    
     const response = await instance.post(API_BASE_URL + "/" + ENV + "/submit", {
       order: params,
       stripe_id: ""
