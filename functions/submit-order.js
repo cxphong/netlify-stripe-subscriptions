@@ -3,7 +3,7 @@ var isSubmitting = false;
 
 // exports.submitOrder = async (stripeId) => {
 exports.handler = async (_event, context) => {
-  console.log(_event);
+  // console.log(_event);
   let data =  _event.body;
   
   if (isSubmitting) {
@@ -33,7 +33,7 @@ exports.handler = async (_event, context) => {
     isSubmitting = false;
   } catch (error) {
     isSubmitting = false;
-    // console.error(error);
+    console.error(error);
   }
 
   return {
