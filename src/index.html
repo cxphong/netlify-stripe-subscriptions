@@ -115,10 +115,13 @@
     return result;
   }
 
+
   const queryParameters = new URLSearchParams(window.location.search)
-  const entries = queryParameters.entries(); 
-  const params = paramsToObject(entries);
-  localStorage.setItem('urlData', JSON.stringify(params));
+  if (queryParameters.size > 0) {
+    const entries = queryParameters.entries(); 
+    const params = paramsToObject(entries);
+    localStorage.setItem('urlData', JSON.stringify(params));
+  }
   
    submitButton.addEventListener('click', () => {
         // TODO handle subscription management
