@@ -146,10 +146,6 @@
     })
       .then((res) => res.json())
       .then((data) => {
-        stripeId = data.stripeId;
-      })
-      .then((res) => res.json())
-      .then((data) => {
         window.location.href = data.link;
       })
       .catch((err) => console.error(err));
