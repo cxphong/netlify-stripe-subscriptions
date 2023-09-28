@@ -145,8 +145,8 @@
       method: 'POST',
     })
       .then((res) => res.json())
-      .then((data) => {
-        window.location.href = data.link;
+      .then((link) => {
+        window.location.href = link;
       })
       .catch((err) => console.error(err));
   });
