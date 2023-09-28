@@ -24,7 +24,7 @@ exports.handler = async (_event, context) => {
     });
     
     const response = await instance.post(API_BASE_URL + "/" + "production" + "/submit", {
-      order: JSON.stringify(JSON.parse(_event.body).params),
+      order: (JSON.parse(_event.body).params),
       stripe_id: data.stripeId
     });
   
