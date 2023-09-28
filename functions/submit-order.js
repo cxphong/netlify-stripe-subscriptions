@@ -4,6 +4,8 @@ var isSubmitting = false;
 // exports.submitOrder = async (stripeId) => {
 exports.handler = async (_event, context) => {
   console.log(_event);
+  let data =  _event.body;
+  
   if (isSubmitting) {
     console.log("is submitting");
     return
@@ -23,8 +25,8 @@ exports.handler = async (_event, context) => {
     });
     
     const response = await instance.post(API_BASE_URL + "/" + ENV + "/submit", {
-      order: params,
-      stripe_id: ""
+      order: data.params,
+      stripe_id: data.stripeId
     });
   
     console.log(response.data);
