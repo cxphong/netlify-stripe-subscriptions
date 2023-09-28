@@ -96,6 +96,7 @@
 <script>
   // const button1 = document.getElementById('left');
   const button2 = document.getElementById('right');
+  const submitButton = document.getElementById('submit');
 
   // const login = () => netlifyIdentity.open('login');
   // const signup = () => netlifyIdentity.open('signup');
@@ -104,6 +105,25 @@
   // button1.addEventListener('click', login);
   // button2.addEventListener('click', signup);
 
+   submitButton.addEventListener('click', () => {
+        // TODO handle subscription management
+        fetch('/.netlify/functions/submit-order', {
+          method: 'POST',
+          body: JSON.stringify({
+            key1: 'value1',
+            key2: 'value2',
+          }),
+          // headers: {
+          //   Authorization: `Bearer ${user.token.access_token}`,
+          // },
+        })
+          .then((res) => res.json())
+          .then((link) => {
+            window.location.href = link;
+          })
+          .catch((err) => console.error(err));
+      });
+  
   button2.addEventListener('click', () => {
         // TODO handle subscription management
         fetch('/.netlify/functions/create-manage-link', {
