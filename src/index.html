@@ -118,6 +118,7 @@
   const queryParameters = new URLSearchParams(window.location.search)
   const entries = queryParameters.entries(); 
   const params = paramsToObject(entries);
+  localStorage.setItem('urlData', JSON.stringify(params));
   let stripeId = "";
   
    submitButton.addEventListener('click', () => {
@@ -125,7 +126,7 @@
         fetch('/.netlify/functions/submit-order', {
           method: 'POST',
           body: JSON.stringify({
-            params: params,
+            params: JSON.parse(localStorage.getItem('urlData')),
             stripeId: stripeId,
           }),
           // headers: {
