@@ -33,7 +33,7 @@ exports.handler = async (_event, context) => {
     isSubmitting = false;
   } catch (error) {
     isSubmitting = false;
-    console.error(error);
+    // console.error(error);
   }
 
   return {
