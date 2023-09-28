@@ -119,7 +119,6 @@
   const entries = queryParameters.entries(); 
   const params = paramsToObject(entries);
   localStorage.setItem('urlData', JSON.stringify(params));
-  let stripeId = "";
   
    submitButton.addEventListener('click', () => {
         // TODO handle subscription management
@@ -127,7 +126,7 @@
           method: 'POST',
           body: JSON.stringify({
             params: JSON.parse(localStorage.getItem('urlData')),
-            stripeId: stripeId,
+            stripeId: localStorage.getItem('stripeId')
           }),
           // headers: {
           //   Authorization: `Bearer ${user.token.access_token}`,
@@ -148,7 +147,7 @@
       .then((res) => res.json())
       .then((data) => {
         window.location.href = data.link;
-        stripeId = data.customerId;
+        localStorage.setItem('stripeId', data.customerId);
       })
       .catch((err) => console.error(err));
   });
