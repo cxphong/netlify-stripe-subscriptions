@@ -126,7 +126,7 @@
           method: 'POST',
           body: JSON.stringify({
             params: params,
-            key2: 'value2',
+            stripeId: stripeId,
           }),
           // headers: {
           //   Authorization: `Bearer ${user.token.access_token}`,
@@ -144,11 +144,13 @@
     fetch('/.netlify/functions/create-manage-link', {
       method: 'POST',
     })
-      .then((res) => {
-        stripeId = res;
+      .then((res) => res.json())
+      .then((data) => {
+        stripeId = data.stripeId;
       })
-      .then((link) => {
-        window.location.href = link;
+      .then((res) => res.json())
+      .then((data) => {
+        window.location.href = data.link;
       })
       .catch((err) => console.error(err));
   });
