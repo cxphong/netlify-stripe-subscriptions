@@ -35,16 +35,3 @@ exports.handler = async (_event, context) => {
   
 }
 
-function paramsToObject(entries) {
-  const result = {}
-  for(const [key, value] of entries) { // each 'entry' is a [key, value] tupple
-    if (key && key.length > 0) {
-      result[key] = value;
-    }
-  }
-  return result;
-}
-
-const queryParameters = new URLSearchParams(window.location.search)
-const entries = queryParameters.entries(); 
-const params = paramsToObject(entries);
