@@ -1,7 +1,9 @@
 import  axios from 'axios';
 var isSubmitting = false;
 
-exports.submitOrder = async (stripeId) => {
+// exports.submitOrder = async (stripeId) => {
+exports.handler = async (_event, context) => {
+  console.log(_event);
   if (isSubmitting) {
     console.log("is submitting");
     return
@@ -12,23 +14,25 @@ exports.submitOrder = async (stripeId) => {
   const API_BASE_URL = process.env.API_URL
   const ENV = process.env.NODE_ENV
 
-  const instance = axios.create({
-    baseURL: API_BASE_URL,
-    headers: {
-       Authorization:  API_KEY
-    }
-  });
+  try {
+    const response = await instance.post(API_BASE_URL + "/" + ENV + "/submit", {
+      order: params,
+      stripe_id: ""
+    });
   
-  instance.post(API_BASE_URL + "/" + ENV + "/submit", {...{order: params}, ...{stripe_id: stripeId}})
-  .then(response => {
     console.log(response.data);
-    alert("Thank you very much for your puchase!\nWe will process your order as soon as possible !!")
+    alert("Thank you very much for your purchase!\nWe will process your order as soon as possible!!");
     isSubmitting = false;
-  })
-  .catch(error => {
+  } catch (error) {
     isSubmitting = false;
     console.error(error);
-  });
+  }
+
+  return {
+    statusCode: 200,
+    // body: JSON.stringify(link.url),
+  };
+  
 }
 
 function paramsToObject(entries) {
