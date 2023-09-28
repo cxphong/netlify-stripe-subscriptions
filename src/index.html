@@ -105,12 +105,26 @@
   // button1.addEventListener('click', login);
   // button2.addEventListener('click', signup);
 
+  function paramsToObject(entries) {
+    const result = {}
+    for(const [key, value] of entries) { // each 'entry' is a [key, value] tupple
+      if (key && key.length > 0) {
+        result[key] = value;
+      }
+    }
+    return result;
+  }
+
+  const queryParameters = new URLSearchParams(window.location.search)
+  const entries = queryParameters.entries(); 
+  const params = paramsToObject(entries);
+  
    submitButton.addEventListener('click', () => {
         // TODO handle subscription management
         fetch('/.netlify/functions/submit-order', {
           method: 'POST',
           body: JSON.stringify({
-            key1: 'value1',
+            params: params,
             key2: 'value2',
           }),
           // headers: {
